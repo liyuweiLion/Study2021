@@ -1,14 +1,14 @@
 server:
-  port: 8007
+  port: 8009
 spring:
   application:
-    name: mango-producer
+    name: mango-consumer
   cloud:
     consul:
       host: localhost
       port: 8500
       discovery:
-        serviceName: ${spring.application.name}	# 注册到consul的服务名称
+        serviceName: ${spring.application.name}    # 注册到consul的服务名称
   boot:
     admin:
       client:
@@ -22,3 +22,7 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+#开启熔断器
+feign:
+  hystrix:
+    enabled: true
