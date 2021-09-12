@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             // 首页和登录页面
             .antMatchers("/").permitAll()
             .antMatchers("/login").permitAll()
+            .antMatchers("/index").permitAll()
             // swagger
             .antMatchers("/swagger-ui.html").permitAll()
             .antMatchers("/swagger-resources/**").permitAll()
@@ -65,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
         // token验证过滤器
         http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
+        http.headers().frameOptions().disable();
     }
 
     @Bean
